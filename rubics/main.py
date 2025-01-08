@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import sys
-import rc
+import rubics
 
 
 def main(args):
@@ -9,7 +9,7 @@ def main(args):
     root = tk.Tk()
     root.geometry("810x600")
     root.title("Rubics Cube")
-    cube = rc.rc()
+    cube = rubics.rc()
 
     #window layout
     style = ttk.Style()
