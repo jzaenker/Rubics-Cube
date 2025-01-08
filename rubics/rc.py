@@ -3,12 +3,14 @@ from PIL import Image, ImageTk
 import copy
 
 class rc:
-    front = np.zeros((3,3))+1
-    top = np.zeros((3,3))+2
-    bottom = np.zeros((3,3))+3
-    right = np.zeros((3,3))+4
-    left = np.zeros((3,3))+5
-    back = np.zeros((3,3))+6
+
+    def __init__(self):
+        self.front = np.zeros((3,3))+1
+        self.top = np.zeros((3,3))+2
+        self.bottom = np.zeros((3,3))+3
+        self.right = np.zeros((3,3))+4
+        self.left = np.zeros((3,3))+5
+        self.back = np.zeros((3,3))+6
 
     def handle_back_left(self):
         temp = copy.copy(self.top[0])
@@ -165,6 +167,31 @@ class rc:
         self.front[:2,2] = self.front[0,:2]
         self.front[0,:2] = self.front[1:,0][::-1]
         self.front[1:,0] = temp
+
+    def shuffle(self):
+        steps = np.random.randint(20,30)
+        for i in range(steps):
+            match np.random.randint(0,11):
+                case 0:self.handle_back_left()
+                case 1:self.handle_back_right()
+                case 2:self.handle_front_left()
+                case 3:self.handle_front_right()
+                case 4:self.handle_top_left()
+                case 5:self.handle_top_right()
+                case 6:self.handle_bottom_left()
+                case 7:self.handle_bottom_right()
+                case 8:self.handle_right_up()
+                case 9:self.handle_right_down()
+                case 10:self.handle_left_up()
+                case 11:self.handle_left_down()
+
+    def solve(self):
+        self.front = np.zeros((3,3))+1
+        self.top = np.zeros((3,3))+2
+        self.bottom = np.zeros((3,3))+3
+        self.right = np.zeros((3,3))+4
+        self.left = np.zeros((3,3))+5
+        self.back = np.zeros((3,3))+6
 
     def assemble(self):
         cube = np.zeros((11,15))

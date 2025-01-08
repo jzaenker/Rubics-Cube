@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 import sys
-import rubics
+import rc
 
 
 def main(args):
@@ -9,7 +9,7 @@ def main(args):
     root = tk.Tk()
     root.geometry("810x600")
     root.title("Rubics Cube")
-    cube = rubics.rc()
+    cube = rc.rc()
 
     #window layout
     style = ttk.Style()
@@ -42,6 +42,9 @@ def main(args):
     ttk.Button(root, style='Left.TButton', command=cube.handle_front_left).grid(row=12,column=13)
     tk.Label(root, text="Front").grid(row=12,column=14)
     ttk.Button(root, style='Right.TButton', command=cube.handle_front_right).grid(row=12,column=15)
+
+    tk.Button(root, text="shuffle", command=cube.shuffle).grid(row=0,column=15)
+    tk.Button(root, text="solve", command=cube.solve).grid(row=0,column=16)
 
     panel = tk.Label(root, image=cube.assemble())
     panel.grid(row=1,column=1, rowspan=11, columnspan = 15)
